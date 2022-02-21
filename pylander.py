@@ -5,14 +5,16 @@ import time
 battle_speed = 3
 
 # Populate list of all files in dir/subdirs
-immortals = []
-for subdir, dirs, files in os.walk('./'):
-    for file in files:
-        # Don't add this program
-        if 'pylander' in file:
-            continue
-        else:
-            immortals += [os.path.join(subdir,file)]
+def gathering():
+    immortals = []
+    for subdir, dirs, files in os.walk('./'):
+        for file in files:
+            # Don't add this program
+            if 'pylander' in file:
+                continue
+            else:
+                immortals += [os.path.join(subdir,file)]
+    return immortals
 
 print("Files loaded.")
 time.sleep(1)
@@ -20,7 +22,6 @@ print("The Gathering is complete.")
 time.sleep(1)
 print("There can be only one.")
 time.sleep(1)
-
 
 # Pick two random files
 def encounter(immortals):
@@ -47,7 +48,8 @@ def duel(fighters):
     quickening(victor)
     time.sleep(battle_speed)
 
-
+immortals = gathering()
 while len(immortals) > 1:
+    immortals = gathering()
     fighters = encounter(immortals)
     duel(fighters)
