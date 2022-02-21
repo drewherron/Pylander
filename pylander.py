@@ -2,7 +2,7 @@ import os
 import random
 import time
 
-battle_speed = 1
+battle_speed = 3
 
 # Populate list of all files in dir/subdirs
 immortals = []
@@ -16,7 +16,7 @@ for subdir, dirs, files in os.walk('./'):
 
 print("Files loaded.")
 time.sleep(1)
-print("The Gathering is complete")
+print("The Gathering is complete.")
 time.sleep(1)
 print("There can be only one.")
 time.sleep(1)
@@ -35,18 +35,18 @@ def encounter(immortals):
 def quickening(victor):
     if len(immortals) == 1:
         print(immortals[0], "wins the Prize.")
-    #else:
-    #    print(victor, "wins.")
 
 def duel(fighters):
     fail = random.randint(0,1)
-    #print("fail: ", fail)
+    print("fail: ", fail)
     print(fighters[fail], "deleted.")
+    os.remove(fighters[fail])
     fighters.remove(fighters[fail])
     immortals.remove(immortals[fail])
     victor = fighters[0]
     quickening(victor)
     time.sleep(battle_speed)
+
 
 while len(immortals) > 1:
     fighters = encounter(immortals)
